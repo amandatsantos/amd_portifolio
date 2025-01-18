@@ -11,8 +11,10 @@ const MainComponent = () => {
             <h1 className="text-sm text-gray-400 mb-4">
               análise de dados, buscando processar e interpretar informações de forma eficaz.
             </h1>
-            <button className="mt-6 px-3 py-2 border-2 border-purple-600 text-white rounded hover:bg-purple-600 hover:text-white items-center w-48">
-              <span>Entre em contato</span>
+           
+            <button className="mt-6 px-3 py-2 border-2 border-purple-600  text-white  hover:bg-purple-600 hover:text-white items-center w-48">
+            <a href="#contato" >
+            <span>Entre em contato</span></a>
             </button>
           </div>
 

@@ -30,7 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-400`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-800 text-gray-900`}>
         {children}
       </body>
     </html>

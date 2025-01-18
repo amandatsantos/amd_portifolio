@@ -1,8 +1,7 @@
 
 import React from "react";
 import "../app/globals.css";
-import Image from 'next/image';
-
+import { FaGithub, FaDiscord, FaLinkedin } from "react-icons/fa";
 // Componentes de Seções
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -22,20 +21,37 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <div className="w-50 bg-gray-800 text-white p-6 space-y-6 flex flex-col items-center">
-        <div className="w-1 h-40 bg-gray-600 mb-6"></div>
+    {/* Sidebar */}
+    <div className="w-50 bg-gray-900 text-white p-14 space-y-6 flex flex-col items-center">
+      <div className="w-0.5 h-80 bg-gray-600 mb-1"></div>
 
-        <div className="text-2xl cursor-pointer hover:text-purple-400">
-        <Image src="/Github.svg" alt="githubicon" width={24} height={24} />
+      <a
+        href="https://github.com/amandatsantos"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-2xl cursor-pointer hover:text-purple-400"
+      >
+        <FaGithub />
+      </a>
 
-        </div>
+      <a
+        href="https://discord.com/user/571662557660708885"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-2xl cursor-pointer hover:text-purple-400"
+      >
+        <FaDiscord />
+      </a>
 
-        <div className="text-2xl cursor-pointer hover:text-purple-400">
-        <Image  src="../Discord.svg" alt="contato" width={24} height={24} />
-
-        </div>
-      </div>
+      <a
+        href="https://www.linkedin.com/in/amanda-tavares-santos-ats/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-2xl cursor-pointer hover:text-purple-400"
+      >
+        <FaLinkedin />
+      </a>
+    </div>
 
       <div className="flex-grow bg-gray-650 text-gray-400 flex flex-col mx-4"> 
         <Header />
@@ -52,7 +68,7 @@ export default function Home() {
         <Footer />
       </div>
 
-      <div className="w-50 bg-gray-800 text-white p-6">
+      <div className="w-50 bg-gray-900 text-white p-14">
       </div>
     </div>
   );

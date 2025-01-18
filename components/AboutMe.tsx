@@ -29,7 +29,7 @@ export default function AboutMeSection() {
         )}
 
         <button
-          className="mt-4 px-4 py-2 border border-purple-600 text-purple-600 text-sm font-medium hover:bg-purple-600 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="mt-4 px-4 py-2 border border-purple-600 text-white text-sm font-medium hover:bg-purple-600 hover:text-white transition-all focus:outline-none focus:ring focus:ring-purple-500"
           onClick={() => setIsExpanded(!isExpanded)}
         >
           {isExpanded ? "Read less" : "Read more"}

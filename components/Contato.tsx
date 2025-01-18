@@ -2,6 +2,7 @@
 import Image from 'next/image';
 
 import React from "react";
+import { FaEnvelope, FaDiscord, FaLinkedin } from "react-icons/fa";
 
 const Contato = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -54,17 +55,46 @@ const Contato = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <div className="text-2xl cursor-pointer hover:text-purple-400">
-                <Image  src="../Discord.svg" alt="contato" width={24} height={24} />
-
+                     <a
+                       href="https://discord.com/user/571662557660708885"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="text-2xl cursor-pointer hover:text-purple-400"
+                     >
+                       <FaDiscord />
+                     </a>
                 </div>
                 <span className="text-gray-300 text-sm">@amandatavares</span>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="text-2xl cursor-pointer hover:text-purple-400">
-                <Image  src="../Email.svg" alt="contato" width={24} height={24} />
+                <a
+                       href="mailto:tavaresamandasantos@gmail.com"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="text-2xl cursor-pointer hover:text-purple-400"
+                     >
+                       <FaEnvelope />
+                     </a>
 
                 </div>
                 <span className="text-gray-300 text-sm">tavaresamandasantos@gmail.com</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="text-2xl cursor-pointer hover:text-purple-400">
+                <a
+                       href="https://www.linkedin.com/in/amanda-tavares-santos-ats/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="text-2xl cursor-pointer hover:text-purple-400"
+                     >
+                       <FaLinkedin/>
+                       </a>
+
+                </div>
+                
+                <span className="text-gray-300 text-sm">Amanda Tavares Santos</span>
+                
               </div>
             </div>
           </div>
@@ -128,7 +158,7 @@ const Contato = () => {
             </div>
             <button
               type="submit"
-              className="px-6 py-2 border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transition"
+              className="px-6 py-2 border border-purple-600 text-white hover:bg-purple-600 hover:text-white transition"
             >
               Enviar
             </button>
