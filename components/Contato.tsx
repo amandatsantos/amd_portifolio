@@ -5,35 +5,35 @@ import React from "react";
 import { FaEnvelope, FaDiscord, FaLinkedin } from "react-icons/fa";
 
 const Contato = () => {
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
 
-    const formData = new FormData(event.target as HTMLFormElement); // Tipo correto
-    const data: { [key: string]: FormDataEntryValue } = {}; // Tipo correto para os dados
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
+  //   const formData = new FormData(event.target as HTMLFormElement); // Tipo correto
+  //   const data: { [key: string]: FormDataEntryValue } = {}; // Tipo correto para os dados
+  //   formData.forEach((value, key) => {
+  //     data[key] = value;
+  //   });
 
-    try {
-      const response = await fetch("/api/sendEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+  //   try {
+  //     const response = await fetch("/api/sendEmail", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
 
-      if (response.ok) {
-        alert("E-mail enviado com sucesso!");
-        (event.target as HTMLFormElement).reset(); // Aqui fazemos o cast para HTMLFormElement
-      } else {
-        alert("Erro ao enviar o e-mail. Tente novamente.");
-      }
-    } catch (error) {
-      console.error("Erro ao enviar o formulário:", error);
-      alert("Erro ao enviar o e-mail. Tente novamente.");
-    }
-  };
+  //     if (response.ok) {
+  //       alert("E-mail enviado com sucesso!");
+  //       (event.target as HTMLFormElement).reset(); // Aqui fazemos o cast para HTMLFormElement
+  //     } else {
+  //       alert("Erro ao enviar o e-mail. Tente novamente.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Erro ao enviar o formulário:", error);
+  //     alert("Erro ao enviar o e-mail. Tente novamente.");
+  //   }
+  // };
 
   return (
     <section id="contato" className="mt-12 py-20">
@@ -100,7 +100,7 @@ const Contato = () => {
           </div>
         </div>
 
-        {/* Formulário de contato */}
+        {/* Formulário de contato
         <div className="border border-gray-600 p-6 mt-6">
           <form id="contactForm" className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -163,8 +163,8 @@ const Contato = () => {
               Enviar
             </button>
           </form>
-        </div>
-      </div>
+        </div>*/}
+      </div> 
     </section>
   );
 };

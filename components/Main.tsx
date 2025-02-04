@@ -13,7 +13,9 @@ const MainComponent = () => {
             </h1>
            
             <button className="mt-6 px-3 py-2 border-2 border-purple-600  text-white  hover:bg-purple-600 hover:text-white items-center w-48">
-            <a href="#contato" >
+            <a href="https://wa.me/+5577991528012?text=Olá,%20gostaria%20de%20saber%20mais!" 
+    target="_blank" 
+    rel="noopener noreferrer" >
             <span>Entre em contato</span></a>
             </button>
           </div>
@@ -39,9 +41,7 @@ const MainComponent = () => {
 
         <div className="flex right items-start place-content-evenly ">
           <div className="border-4 border-gray-400 text-right text-white px-8 py-4 max-w-xl relative mt-[-80px]">
-            <span className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 text-4xl text-gray-400">“</span>
             <p className="italic text-lg">- Dr. Who</p>
-            <span className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 text-4xl text-gray-400">”</span>
           </div>
         </div>
       </section>
