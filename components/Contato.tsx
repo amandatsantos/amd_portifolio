@@ -1,170 +1,176 @@
 "use client";
-import Image from 'next/image';
-
-import React from "react";
+import Image from "next/image";
+import React, { useState } from "react";
 import { FaEnvelope, FaDiscord, FaLinkedin } from "react-icons/fa";
+import { IconType } from "react-icons";
 
-const Contato = () => {
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
+interface ContatoItemProps {
+  href: string;
+  text: string;
+  Icon: IconType;
+  label: string;
+}
 
-  //   const formData = new FormData(event.target as HTMLFormElement); // Tipo correto
-  //   const data: { [key: string]: FormDataEntryValue } = {}; // Tipo correto para os dados
-  //   formData.forEach((value, key) => {
-  //     data[key] = value;
-  //   });
+const ContatoItem: React.FC<ContatoItemProps> = ({ href, text, Icon }) => (
+  <div className="flex items-center space-x-4">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-2xl cursor-pointer hover:text-purple-400"
+    >
+      <Icon />
+    </a>
+    <span className="text-gray-300 text-sm">{text}</span>
+  </div>
+);
 
-  //   try {
-  //     const response = await fetch("/api/sendEmail", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
+const Contato: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    title: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("");
 
-  //     if (response.ok) {
-  //       alert("E-mail enviado com sucesso!");
-  //       (event.target as HTMLFormElement).reset(); // Aqui fazemos o cast para HTMLFormElement
-  //     } else {
-  //       alert("Erro ao enviar o e-mail. Tente novamente.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Erro ao enviar o formulário:", error);
-  //     alert("Erro ao enviar o e-mail. Tente novamente.");
-  //   }
-  // };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      setStatus("Mensagem enviada com sucesso!");
+      setFormData({ name: "", email: "", title: "", message: "" });
+    } else {
+      setStatus("Erro ao enviar a mensagem.");
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <section id="contato" className="mt-12 py-20">
-      <div className="grid grid-cols-1 gap-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <div>
-            <div className="flex items-center space-x-2 mb-6">
-              <Image  src="/hash_icon.svg" alt="contato" width={24} height={24} />
-              <h2 className="text-2xl font-semibold text-white hover:text-gray-50">Contato</h2>
-            </div>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Estou interessada em oportunidades de freelance. No entanto, se
-              tiver outra solicitação ou pergunta, não hesite em me contactar.
-            </p>
+    <div className="container mx-auto px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div>
+          <div className="flex items-center space-x-2 mb-6">
+            <Image src="/hash_icon.svg" alt="contato" width={24} height={24} />
+            <h2 className="text-white font-semibold text-lg">Contato</h2>
           </div>
-
-          <div className="border border-gray-600 p-6">
-            <h3 className="text-lg font-semibold text-white mb-4">Me contacte aqui</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <div className="text-2xl cursor-pointer hover:text-purple-400">
-                     <a
-                       href="https://discord.com/user/571662557660708885"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="text-2xl cursor-pointer hover:text-purple-400"
-                     >
-                       <FaDiscord />
-                     </a>
-                </div>
-                <span className="text-gray-300 text-sm">@amandatavares</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="text-2xl cursor-pointer hover:text-purple-400">
-                <a
-                       href="mailto:tavaresamandasantos@gmail.com"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="text-2xl cursor-pointer hover:text-purple-400"
-                     >
-                       <FaEnvelope />
-                     </a>
-
-                </div>
-                <span className="text-gray-300 text-sm">tavaresamandasantos@gmail.com</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="text-2xl cursor-pointer hover:text-purple-400">
-                <a
-                       href="https://www.linkedin.com/in/amanda-tavares-santos-ats/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="text-2xl cursor-pointer hover:text-purple-400"
-                     >
-                       <FaLinkedin/>
-                       </a>
-
-                </div>
-                
-                <span className="text-gray-300 text-sm">Amanda Tavares Santos</span>
-                
-              </div>
-            </div>
+          <p className="text-sm text-gray-400 mb-8">
+            Estou interessada em oportunidades de freelance. No entanto,
+            se tiver outra solicitação ou pergunta, não hesite em me
+            contactar.
+          </p>
+          <div className="space-y-4">
+            <ContatoItem
+              href="https://discord.com/user/571662557660708885"
+              text="@amandatavares"
+              Icon={FaDiscord}
+              label="Discord"
+            />
+            <ContatoItem
+              href="mailto:tavaresamandasantos@gmail.com"
+              text="tavaresamandasantos@gmail.com"
+              Icon={FaEnvelope}
+              label="E-mail"
+            />
+            <ContatoItem
+              href="https://www.linkedin.com/in/amanda-tavares-santos-ats/"
+              text="Amanda Tavares Santos"
+              Icon={FaLinkedin}
+              label="LinkedIn"
+            />
           </div>
         </div>
+     
 
-        {/* Formulário de contato
-        <div className="border border-gray-600 p-6 mt-6">
-          <form id="contactForm" className="space-y-4" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="border border-gray-600 p-6">
+            <form id="contactForm" className="space-y-4" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="text-gray-300 block mb-1">
+                    Nome
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-transparent text-gray-300 border border-gray-500 focus:ring-2 focus:ring-purple-400"
+                    placeholder="Digite seu nome"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="text-gray-300 block mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-transparent text-gray-300 border border-gray-500 focus:ring-2 focus:ring-purple-400"
+                    placeholder="Digite seu email"
+                    required
+                  />
+                </div>
+              </div>
               <div>
-                <label htmlFor="name" className="text-gray-300 block mb-1">
-                  Nome
+                <label htmlFor="title" className="text-gray-300 block mb-1">
+                  Título
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 bg-transparent text-gray-300 border border-gray-500 focus:ring-2 focus:ring-purple-400"
-                  placeholder="Digite seu nome"
-                  required
+                  placeholder="Digite o título"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="text-gray-300 block mb-1">
-                  Email
+                <label htmlFor="message" className="text-gray-300 block mb-1">
+                  Mensagem
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 bg-transparent text-gray-300 border border-gray-500 focus:ring-2 focus:ring-purple-400"
-                  placeholder="Digite seu email"
+                  placeholder="Digite sua mensagem"
+                  rows={4}
                   required
-                />
+                ></textarea>
               </div>
-            </div>
-            <div>
-              <label htmlFor="title" className="text-gray-300 block mb-1">
-                Título
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                className="w-full px-4 py-2 bg-transparent text-gray-300 border border-gray-500 focus:ring-2 focus:ring-purple-400"
-                placeholder="Digite o título"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="text-gray-300 block mb-1">
-                Mensagem
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                className="w-full px-4 py-2 bg-transparent text-gray-300 border border-gray-500 focus:ring-2 focus:ring-purple-400"
-                placeholder="Digite sua mensagem"
-                rows={4}
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="px-6 py-2 border border-purple-600 text-white hover:bg-purple-600 hover:text-white transition"
-            >
-              Enviar
-            </button>
-          </form>
-        </div>*/}
-      </div> 
+              <button
+                type="submit"
+                className="px-6 py-2 border border-purple-600 text-white hover:bg-purple-600 hover:text-white transition"
+              >
+                Enviar
+              </button>
+            </form>
+            {status && <p className="mt-4 text-gray-300">{status}</p>}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

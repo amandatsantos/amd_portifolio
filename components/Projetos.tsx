@@ -1,7 +1,6 @@
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
-// Definindo tipos para as propriedades do componente ProjectCard
 interface ProjectCardProps {
   link: string;
   tech: string;
@@ -13,7 +12,7 @@ const ProjectCard = ({ link, tech, projectTitle, description }: ProjectCardProps
   return (
     <a
       href={link}
-      className="border-2 border-gray-600 p-4 bg-transparent hover:shadow-lg transition-shadow block w-full max-w-sm h-64" // Alterado para responsividade
+      className="border-2 border-gray-600 p-4 bg-transparent hover:shadow-lg transition-shadow block w-full max-w-sm md:max-w-md lg:max-w-lg h-auto"
     >
       <div className="flex flex-col mb-4">
         <span className="text-xs text-gray-500">Tecnologias</span>
@@ -32,12 +31,14 @@ const ProjectCard = ({ link, tech, projectTitle, description }: ProjectCardProps
 
 const ProjectsSection = () => {
   return (
-    <section id="projetos" className="mt-12 py-20 px-4">
-      <div className="flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center space-x-2 mb-6 sm:mb-0">
-          <Image src="/hash_icon.svg" alt="sobre-mim" width={24} height={24} />
-          <h2 className="text-2xl font-semibold text-white hover:text-gray-50">Projetos</h2>
-        </div>
+    <section id="projetos" className="mt-12 py-20 px-6 lg:px-20">
+      <div className="flex items-center space-x-2 mb-6 -ml-6 lg:-ml-20">
+        <Image src="/hash_icon.svg" alt="projetos" width={24} height={24} />
+        <h2 className="text-white font-semibold text-lg">Projetos</h2>
+      </div>
+
+      <div className="flex justify-between items-center mb-6">
+        <div></div>
         <a
           href="https://github.com/amandatsantos"
           className="text-sm text-gray-400 hover:text-gray-300 flex items-center"
@@ -46,7 +47,7 @@ const ProjectsSection = () => {
         </a>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4 border-t border-gray-700 pt-4 justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 border-b border-gray-700 pt-4">
         <ProjectCard
           link="/projects/impactos-tecnologicos"
           tech="Python, Pandas"

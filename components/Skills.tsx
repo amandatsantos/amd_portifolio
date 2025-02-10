@@ -1,55 +1,76 @@
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
-// Componente para os Cards de Habilidades
-interface SkillCardProps {
-  title: string;
-  items: string[];
+interface ProjectCardProps {
+  link: string;
+  tech: string;
+  projectTitle: string;
+  description: string;
 }
 
-const SkillCard = ({ title, items }: SkillCardProps) => {
+const ProjectCard = ({ link, tech, projectTitle, description }: ProjectCardProps) => {
   return (
-    <div className="border-2 border-gray-700 p-4 bg-transparent hover:shadow-lg transition-shadow block w-full max-w-sm h-64">
-      <div className="p-2 border-b-2 border-gray-600 flex justify-center items-center h-1/3">
-        <h3 className="text-white font-semibold text-lg">{title}</h3>
+    <a
+      href={link}
+      className="border-2 border-gray-600 p-4 bg-transparent hover:shadow-lg transition-shadow block w-full max-w-sm md:max-w-md lg:max-w-lg h-auto"
+    >
+      <div className="flex flex-col mb-4">
+        <span className="text-xs text-gray-500">Tecnologias</span>
+        <span className="text-xs text-gray-400">{tech}</span>
       </div>
-      <div className="p-4 h-2/3 overflow-auto">
-        <ul className="text-gray-400 text-sm space-y-2">
-          {items.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
+
+      <div className="border-b border-gray-600 mb-4"></div>
+
+      <div>
+        <h3 className="text-white font-semibold text-base mb-2">{projectTitle}</h3>
+        <p className="text-gray-400 text-sm">{description}</p>
       </div>
-    </div>
+    </a>
   );
 };
 
-// Seção de Skills
-const SkillsSection = () => {
+const ProjectsSection = () => {
   return (
-    <section id="skills" className="mt-12 py-20 px-4">
-      <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-        <div className="flex items-center space-x-2">
-          <Image src="/hash_icon.svg" alt="sobre-mim" width={24} height={24} />
-          <h2 className="text-2xl font-semibold text-white hover:text-gray-50">Skills</h2>
-        </div>
+    <section id="projetos" className="mt-12 py-20 px-6 lg:px-20">
+      <div className="flex items-center space-x-2 mb-6 -ml-6 lg:-ml-20">
+        <Image src="/hash_icon.svg" alt="projetos" width={24} height={24} />
+        <h2 className="text-white font-semibold text-lg">Projetos</h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-8 w-full">
-        <div className="flex flex-col space-y-6 items-center lg:items-start">
-          <Image src="Logo.svg" alt="Logo" width={96} height={0} className="h-auto" />
-          <Image src="Dots.svg" alt="Dots" width={96} height={0} className="h-auto" />
-        </div>
+      <div className="flex justify-between items-center mb-6">
+        <div></div>
+        <a
+          href="https://github.com/amandatsantos"
+          className="text-sm text-gray-400 hover:text-gray-300 flex items-center"
+        >
+          Ver todos <span className="ml-1">➞</span>
+        </a>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center w-full">
-          <SkillCard title="Linguagens" items={["Python", "R", "SQL", "VBA"]} />
-          <SkillCard title="Bancos de Dados" items={["MySQL"]} />
-          <SkillCard title="Ferramentas" items={["Power BI", "Excel", "Jupyter Notebook"]} />
-          <SkillCard title="Frameworks" items={["TensorFlow", "PyTorch", "Matplotlib"]} />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 border-b border-gray-700 pt-4">
+        <ProjectCard
+          link="/projects/impactos-tecnologicos"
+          tech="Python, Pandas"
+          projectTitle="Impactos Tecnológicos na América do Sul"
+          description="Análise dos impactos da tecnologia no desenvolvimento econômico. Dados Abertos - Banco Mundial"
+        />
+
+        <ProjectCard
+          link="https://github.com/amandatsantos/An-lise-de-dados-da-fiscaliza-o-e-distribui-o-dos-autos-de-infra-o-na-Bahia"
+          tech="Google Script, Google Sheets, Power BI"
+          projectTitle="Análise Exploratória da Fiscalização e Distribuição dos Autos de Infração na Bahia"
+          description="Análise de dados sobre a fiscalização no estado da Bahia. Dados Abertos - IBAMA"
+        />
+
+        <ProjectCard
+          link="https://github.com/amandatsantos/An-lise-de-dados-sobre-Movimenta-o-e-Tempos-de-Despachos-Aduaneiros"
+          tech="Excel, Power BI"
+          projectTitle="Análise sobre o Movimento e Tempos de Despachos Aduaneiros"
+          description="Análise de tempos de despacho e movimentação de cargas. Dados Abertos - Ministério da Fazenda"
+        />
       </div>
     </section>
   );
 };
 
-export default SkillsSection;
+export default ProjectsSection;
