@@ -1,0 +1,3 @@
+GMAIL_USER= email credenciado no nodemailer
+
+GMAIL_APP_PASSWORD= codigo credenciado no nodemailer
